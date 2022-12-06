@@ -8,7 +8,7 @@ import { GoBackButton } from "../../components/GoBackButton";
 import { Row, Description, Image, ImageContainer, Title, Box, ProductPrice, Minus, Plus, FavoriteButton, ProductAmount } from "./styles";
 import { Highlight, styles } from "../../globals/styles.global";
 import { formatCurrency } from "../../utils/format.util";
-import { ProductDataBackend } from "../../components/ProductsList";
+import { ProductDataBackend } from "../../utils/interfaces.backend";
 
 
 interface RouteParamsData {
