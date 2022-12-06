@@ -1,26 +1,76 @@
-import { HorizontalCategories } from "../../components/HorizontalCategories";
+import { useMemo, useRef } from 'react'
+import { ScrollView, TouchableOpacity } from "react-native";
+import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
+import * as Icon from 'phosphor-react-native';
+import { CartButton } from "../../components/CartButton";
+// import { HorizontalCategories } from "../../components/HorizontalCategories";
 import { SearchInput } from "../../components/SearchInput";
 import { VerticalCategories } from "../../components/VerticalCategories";
 import { Wrapper } from "../../components/Wrapper";
-import { Highlight } from "../../globals/styles.global";
+import { Highlight, styles } from "../../globals/styles.global";
 import { Subtitle } from "./styles";
+import { IconContainer } from '../../components/Input/styles';
+import { CartItems } from '../../components/CartItems';
+import { useCart } from '../../contexts/CartContext';
 
 export function Products() {
+  const bottomSheetRef = useRef<BottomSheet>(null)
+  const snapPoints = useMemo(() => [1, '75%'], []);
+  // const { productsCart } = useCart()
+  // console.log(productsCart)
+
+  const bottomSheetExpand = () => bottomSheetRef.current?.expand()
+  const bottomSheetClose = () => bottomSheetRef.current?.close()
+
   return (
     <Wrapper>
       <SearchInput />
 
-      <Subtitle>
+      {/* <Subtitle>
         <Highlight>Favoritos</Highlight>
-      </Subtitle>
+      </Subtitle> */}
 
-      <HorizontalCategories showOnlyFavorites />
+      {/* <HorizontalCategories showOnlyFavorites /> */}
 
       <Subtitle>
         <Highlight>Categorias</Highlight>
       </Subtitle>
 
-      <VerticalCategories />
+      <ScrollView>
+        <VerticalCategories />
+      </ScrollView>
+
+      {/* { productsCart && productsCart.length > 0 && <CartButton quantidade={productsCart.length} onPress={bottomSheetExpand} /> } */}
+
+      <BottomSheet
+            ref={bottomSheetRef}
+            index={-1}
+            snapPoints={snapPoints}
+            handleIndicatorStyle={{
+                backgroundColor: styles.colors.border,
+                width: '15%'
+            }}
+            enablePanDownToClose
+            handleStyle={{
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10,
+            }}
+            backgroundStyle={{
+                backgroundColor: styles.colors.background,
+            }}
+            backdropComponent={(backdropProps) => (
+              <BottomSheetBackdrop {...backdropProps} enableTouchThrough={true} />
+            )}
+            style={{
+              paddingHorizontal: 16
+            }}
+            
+        >
+          <TouchableOpacity onPress={bottomSheetClose}>
+            <Icon.X size={25} color={styles.colors.heading}/>
+          </TouchableOpacity>
+          <CartItems />
+        </BottomSheet>  
     </Wrapper>
   );
 }

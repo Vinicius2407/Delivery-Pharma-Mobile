@@ -1,131 +1,34 @@
+import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import * as Icon from "phosphor-react-native";
-
+import axios from "axios";
 import { List } from "../List";
 import { Divider, styles } from "../../globals/styles.global";
 import { Image, ImageContainer, Item, Price, Row, Title } from "./styles";
 import { formatCurrency } from "../../utils/format.util";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { ProductDataBackend } from '../../utils/interfaces.backend'
 
 interface ProductsListProps {
   categoryId?: number;
 }
 
-export interface ProductData {
-  id: string;
-  name: string;
-  price: number;
-  imageUri: string;
-}
-
-interface RenderItemProps {
-  item: ProductData;
-  index: number;
-}
-
-interface RenderItemBackendProps { // --code
+interface RenderItemBackendProps {
   item: ProductDataBackend;
   index: number;
 }
 
-export interface ProductDataBackend { // --code
-  bula: null,
-  categoria: {
-      descricao: string,
-      id: number,
-  },
-  conteudo: string | null,
-  descricao: string,
-  dh_registro: null,
-  fabricante: string,
-  formula: string | null,
-  id: number,
-  imagem: string | null,
-  nome: string,
-  precisa_receita: boolean,
-  precisa_recolher_receita: boolean | null,
-  uso: string,
-  valor_unitario: number,
-}
-
-// const products: ProductData[] = [
-//   {
-//     id: "1",
-//     name: "Tylenon | Paracetamol",
-//     price: 42.99,
-//     imageUri: "https://www.tylenol.com.br/sites/tylenol_br/files/tylenol-500-21.png",
-//   },
-//   {
-//     id: "2",
-//     name: "Xarope Expec Legrand Pharma",
-//     price: 29.99,
-//     imageUri:
-//       "https://drogariasp.vteximg.com.br/arquivos/ids/578466-1000-1000/104973---expec-legrand-pharma-xarope-120ml-1.jpg?v=637835694033170000",
-//   },
-//   {
-//     id: "3",
-//     name: "Pomada Quadriderm",
-//     price: 115.98,
-//     imageUri: "",
-//   },
-//   {
-//     id: "4",
-//     name: "Nimesulida",
-//     price: 42.99,
-//     imageUri: "https://www.farmasesi.com.br/estatico/sesi/images/produto/13653.jpeg",
-//   },
-//   {
-//     id: "5",
-//     name: "Azulzinho da Maldade",
-//     price: 142.5,
-//     imageUri:
-//       "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2014_39/685641/140925-viagra-pills-1622.jpg",
-//   },
-//   {
-//     id: "6",
-//     name: "Teste de Gravidez GravtestEasy",
-//     price: 42.99,
-//     imageUri: "https://farmaciaindiana.vteximg.com.br/arquivos/ids/240949/7898075310383.jpg?v=637601393668800000",
-//   },
-//   {
-//     id: "7",
-//     name: "Cimegripe",
-//     price: 42.99,
-//     imageUri: "https://www.drogariaminasbrasil.com.br/media/product/aba/cimegripe-com-20-capsulas-01b.jpg",
-//   },
-//   {
-//     id: "8",
-//     name: "Benegripe",
-//     price: 32.29,
-//     imageUri: "",
-//   },
-//   {
-//     id: "9",
-//     name: "Fralda GG Pampers",
-//     price: 38.56,
-//     imageUri: "",
-//   },
-//   {
-//     id: "10",
-//     name: "Papel Higiênico",
-//     price: 18,
-//     imageUri: "",
-//   },
-// ];
-
 export function ProductsList({ categoryId }: ProductsListProps) {
-  const [products, setProducts] = useState<ProductDataBackend[]>([]); // --code
+  const [products, setProducts] = useState<ProductDataBackend[]>([]);
 
   const navigation = useNavigation();
 
-  function handleProductDetails(product: ProductDataBackend) { // --code
+  function handleProductDetails(product: ProductDataBackend) {
     navigation.navigate("ProductDetails" as never, { product } as never);
   }
 
-  useEffect(() => { // --code
+  useEffect(() => {
     const getProductsFromDB = async () => {
-      const url = categoryId ? `http://localhost:8080/produto/categoria/${categoryId}` : "http://localhost:8080/produto"; 
+      const url = categoryId ? `http://192.168.42.133:8080/produto/categoria/${categoryId}` : "http://192.168.42.133:8080/produto"; 
       const { data } = await axios.get<ProductDataBackend[]>(url)
       setProducts(data)
     }
