@@ -26,14 +26,14 @@ export function ProductsList({ categoryId }: ProductsListProps) {
     navigation.navigate("ProductDetails" as never, { product } as never);
   }
 
-  useEffect(() => {
-    const getProductsFromDB = async () => {
-      const url = categoryId ? `http://192.168.42.133:8080/produto/categoria/${categoryId}` : "http://192.168.42.133:8080/produto"; 
-      const { data } = await axios.get<ProductDataBackend[]>(url)
-      setProducts(data)
-    }
-    getProductsFromDB().catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   const getProductsFromDB = async () => {
+  //     const url = categoryId ? `http://192.168.42.133:8080/produto/categoria/${categoryId}` : "http://192.168.42.133:8080/produto"; 
+  //     const { data } = await axios.get<ProductDataBackend[]>(url)
+  //     setProducts(data)
+  //   }
+  //   getProductsFromDB().catch((error) => console.log(error));
+  // }, []);
 
   return (
     <List
