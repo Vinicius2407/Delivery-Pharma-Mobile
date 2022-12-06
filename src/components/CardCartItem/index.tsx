@@ -35,7 +35,7 @@ export function CardCartItem({ id, nome, valor_unitario, imagem, quantidade }: C
                 </View>
             </View>
             <Box style={{ justifyContent: "space-between" }}>
-                <BoxMinus activeOpacity={0.6} onPress={() => addProductToCart(id)}>
+                <BoxMinus activeOpacity={0.6} onPress={() => removeProductFromCart(id)}>
                     {!!quantidade && ( quantidade === 1 ? (
                         <TrashSimple size={25} color={styles.colors.red} />
                     ) : (
@@ -45,7 +45,7 @@ export function CardCartItem({ id, nome, valor_unitario, imagem, quantidade }: C
                 <ProductQuantity>
                     {quantidade}
                 </ProductQuantity>
-                <BoxPlus activeOpacity={0.6} onPress={() => removeProductFromCart(id)}>
+                <BoxPlus activeOpacity={0.6} onPress={() => addProductToCart(id)}>
                     <Plus size={25} color={styles.colors.blue} />
                 </BoxPlus>
             </Box>
@@ -61,7 +61,7 @@ const customStyles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     imageContainer: {
-        marginTop: 14,
+        // marginTop: 14,
         borderColor: `${styles.colors.border}`,
         paddingHorizontal: 16,
         paddingVertical: 10,
@@ -73,7 +73,7 @@ const customStyles = StyleSheet.create({
 
 const Box = styled.View`
   height: 50px;
-  width: 150px;
+  width: 120px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -98,6 +98,7 @@ const BoxMinus = styled.TouchableOpacity`
   justify-content: center;
   height: 100%;
   flex: 1;
+  padding: 10px;
 `;
 
 const BoxPlus = styled.TouchableOpacity`
@@ -106,4 +107,5 @@ const BoxPlus = styled.TouchableOpacity`
   justify-content: center;
   height: 100%;
   flex: 1;
+  padding: 10px;
 `;

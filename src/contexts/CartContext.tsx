@@ -11,6 +11,7 @@ interface CartContextData {
     getProductFromCart: (id: number) => CartProductItem | undefined;
     removeProductFromCart: (id: number) => void;
     clearProductsFromCart: () => void;
+    getTotalParcial:() => number;
 }
 
 const initialProducts = [{ 
@@ -35,11 +36,31 @@ export function CartProvider({ children }: CartProviderProps) {
     const [productsCart, setProductsCart] = useState<CartProductItem[]>(initialProducts);
 
     function addProductToCart(id: number) {
+        const copyProductsCart = [...productsCart]
 
+        const item = copyProductsCart.find((product) => product.id == id)
+
+        if(!item) {
+            //copyProductsCart.push({})
+        }else {
+            item.quantidade = item.quantidade + 1
+        }
+
+        setProductsCart(copyProductsCart)
     }
 
     function removeProductFromCart(id: number) {
+        const copyProductsCart = [...productsCart]
 
+        const item = copyProductsCart.find((product) => product.id == id)
+
+        if(item && item.quantidade > 1) {
+            item.quantidade = item.quantidade - 1
+            setProductsCart(copyProductsCart)
+        }else {
+            const arrayFiltered = copyProductsCart.filter((product) => product.id != id)
+            setProductsCart(arrayFiltered)
+        }
     }
 
     function clearProductsFromCart() {
@@ -50,6 +71,13 @@ export function CartProvider({ children }: CartProviderProps) {
         return productsCart.find((item) => item.id == id);
     }
 
+    function getTotalParcial() {
+        let totalParcial = 0;
+        productsCart.forEach((item) => totalParcial = totalParcial + (item.quantidade * item.valor_unitario))
+
+        return totalParcial
+    }
+
     return (
         <CartContext.Provider
             value={{
@@ -57,7 +85,8 @@ export function CartProvider({ children }: CartProviderProps) {
                 addProductToCart,
                 getProductFromCart,
                 removeProductFromCart,
-                clearProductsFromCart
+                clearProductsFromCart,
+                getTotalParcial,
             }}
         >
             { children }

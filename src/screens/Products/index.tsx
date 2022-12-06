@@ -16,7 +16,7 @@ import { useCart } from '../../contexts/CartContext';
 export function Products() {
   const bottomSheetRef = useRef<BottomSheet>(null)
   const snapPoints = useMemo(() => [1, '75%'], []);
-  // const { productsCart } = useCart()
+  const { productsCart } = useCart()
   // console.log(productsCart)
 
   const bottomSheetExpand = () => bottomSheetRef.current?.expand()
@@ -40,7 +40,12 @@ export function Products() {
         <VerticalCategories />
       </ScrollView>
 
-      {/* { productsCart && productsCart.length > 0 && <CartButton quantidade={productsCart.length} onPress={bottomSheetExpand} /> } */}
+      { productsCart && productsCart.length > 0 && (
+        <CartButton 
+          quantidade={productsCart.length} 
+          onPress={bottomSheetExpand} 
+        />
+      )}
 
       <BottomSheet
             ref={bottomSheetRef}

@@ -12,7 +12,7 @@ interface RenderItemProps {
 }
 
 export function CartItems() {
-    // const { productsCart } = useCart();
+    const { productsCart } = useCart();
 
     return (
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -30,10 +30,10 @@ export function CartItems() {
                     </Text>
                 </TouchableOpacity>
             </View>
-            {/* <List
+            <List
                 data={productsCart}
-                style={{ paddingTop: 10, marginBottom: -16 }}
-                contentContainerStyle={{ paddingBottom: 32 }}
+                // style={{ paddingTop: 10, marginBottom: -16 }}
+                // contentContainerStyle={{ paddingBottom: 32 }}
                 renderItem={({ item }: RenderItemProps) => (
                     <CardCartItem 
                         key={item.id}
@@ -44,7 +44,7 @@ export function CartItems() {
                         quantidade={item.quantidade}
                     />
                 )}
-            /> */}
+            />
             <View style={{ width: '100%', flexDirection: 'column' }}>
                 <Highlight>Resumo</Highlight>
                 <View 
