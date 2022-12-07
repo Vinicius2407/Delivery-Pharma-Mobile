@@ -1,6 +1,6 @@
 import * as Icon from "phosphor-react-native";
 import { Wrapper } from "../../components/Wrapper";
-import { styles } from "../../globals/styles.global";
+import { Divider, styles } from "../../globals/styles.global";
 import { Title, Row, LogOutButton, Column, UserAvatar, Button } from "./styles";
 
 export function Account() {
@@ -32,6 +32,7 @@ export function Account() {
                         <Icon.UserGear size={35} color={styles.colors.contrast}/>
                     </Button>
                 </Row>
+                <Divider />
             </Column>
         </Wrapper>
     );

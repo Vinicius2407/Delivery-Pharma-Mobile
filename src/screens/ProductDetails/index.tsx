@@ -8,7 +8,8 @@ import { GoBackButton } from "../../components/GoBackButton";
 import { Row, Description, Image, ImageContainer, Title, Box, ProductPrice, Minus, Plus, FavoriteButton, ProductAmount } from "./styles";
 import { Highlight, styles } from "../../globals/styles.global";
 import { formatCurrency } from "../../utils/format.util";
-import { ProductDataBackend } from "../../components/ProductsList";
+import { ProductDataBackend } from "../../utils/interfaces.backend";
+import { useCart } from "../../contexts/CartContext";
 
 
 interface RouteParamsData {
@@ -18,22 +19,13 @@ interface RouteParamsData {
 export function ProductDetails() {
   const route = useRoute();
   const { product } = route.params as RouteParamsData
+  const { productsCart, addProductToCart, removeProductFromCart } = useCart()
   
   const changeTimer: React.MutableRefObject<any> = useRef(null);
   // const { product } = route.params as RouteParamsData;
 
-  const [amountToBuy, setAmountToBuy] = useState(0);
-
-  function handleIncreaseAmount() {
-    setAmountToBuy((prev) => prev + 1);
-  }
-
-  function handleDecreaseAmount() {
-    setAmountToBuy((prev) => (prev > 1 ? prev - 1 : 0));
-  }
-
-  // const handleIncreaseAmount = () => setAmountToBuy((prev) => prev + 1);
-  // const handleDecreaseAmount = () => setAmountToBuy((prev) => prev - 1);
+  const productCart = productsCart.find((item) => item.id == product.id)
+  //continuar aqui
 
   return (
     <Wrapper>
@@ -60,27 +52,27 @@ export function ProductDetails() {
         <Description>{product.bula}</Description>
       </ScrollView>
 
-      <Row style={{ marginBottom: 16, paddingTop: 16 }}>
+      {/* <Row style={{ marginBottom: 16, paddingTop: 16 }}>
         <Box style={{ justifyContent: "space-between" }}>
-          <Minus activeOpacity={0.6} onPress={handleDecreaseAmount}>
-            {!!amountToBuy &&
-              (amountToBuy === 1 ? (
+          <Minus activeOpacity={0.6} onPress={() => removeProductFromCart(product.id)}>
+            {!!productCart &&
+              (productCart.quantidade === 1 ? (
                 <Icon.TrashSimple size={25} color={styles.colors.red} />
               ) : (
                 <Icon.Minus size={25} color={styles.colors.red} />
               ))}
           </Minus>
           <ProductAmount onChangeText={(text) => setAmountToBuy(Number(text))} style={{ marginHorizontal: 24 }}>
-            {amountToBuy}
+            {productCart && productCart.quantidade}
           </ProductAmount>
-          <Plus activeOpacity={0.6} onPress={handleIncreaseAmount}>
+          <Plus activeOpacity={0.6} onPress={() => addProductToCart(product.id)}>
             <Icon.Plus size={25} color={styles.colors.blue} />
           </Plus>
         </Box>
         <Box style={{ justifyContent: "center" }}>
           <ProductPrice>{formatCurrency(product.valor_unitario)}</ProductPrice>
         </Box>
-      </Row>
+      </Row> */}
     </Wrapper>
   );
 }
