@@ -30,6 +30,11 @@ export const styles = {
   },
 };
 
+export const Text = styled.Text`
+  font-family: ${styles.fonts.regular};
+  color: ${styles.colors.body};
+`;
+
 export const Highlight = styled.Text`
   font-family: ${styles.fonts.medium};
   color: ${styles.colors.heading};
@@ -39,4 +44,28 @@ export const Divider = styled.View`
   height: 1px;
   background: ${styles.colors.border};
   margin: 5px 0;
+`;
+
+export const Row = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const RowJustifyCenter = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const RowJustifyBetween = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Column = styled.View`
+  flex-direction: column;
+  align-items: flex-start;
 `;
