@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useState, createContext, useContext } from 'react'
-import { CartProductItem } from '../utils/interfaces.backend';
+import { CartProductItem, ProductDataBackend } from '../utils/interfaces.backend';
 
 interface CartProviderProps {
     children: React.ReactNode;
@@ -35,13 +36,29 @@ const CartContext = createContext({} as CartContextData)
 export function CartProvider({ children }: CartProviderProps) {
     const [productsCart, setProductsCart] = useState<CartProductItem[]>(initialProducts);
 
+    const getProductIfNotExit = async(id:number) => {
+        const { data } = await axios.get<ProductDataBackend>(`http://192.200.42.39:8080/produto/${id}`)
+        return data;
+    }
+
     function addProductToCart(id: number) {
         const copyProductsCart = [...productsCart]
 
         const item = copyProductsCart.find((product) => product.id == id)
 
-        if(!item) {
-            //copyProductsCart.push({})
+        if (!item) {
+            axios.get(`http://192.200.42.39:8080/produto/${id}`)
+                .then((resp) => {
+                    const result = resp.data as ProductDataBackend
+                    copyProductsCart.push({
+                        id,
+                        nome: result.nome,
+                        imagem: result.imagem,
+                        valor_unitario: result.valor_unitario,
+                        quantidade: 1
+                    })
+                    setProductsCart(copyProductsCart)
+                }).catch((error) => console.log(error))
         }else {
             item.quantidade = item.quantidade + 1
         }

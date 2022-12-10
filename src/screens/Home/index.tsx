@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import * as Icon from "phosphor-react-native";
+import { User } from "phosphor-react-native";
 
 import { Wrapper } from "../../components/Wrapper";
 import { SearchInput } from "../../components/SearchInput";
@@ -25,7 +25,7 @@ export function Home() {
           <Subtitle>O que vai pedir hoje?</Subtitle>
         </Username>
         <ProfileButton activeOpacity={0.6} onPress={handleGoToAccountScreen}>
-          <Icon.User color={styles.colors.heading} size={30} weight="duotone" />
+          <User color={styles.colors.heading} size={30} weight="duotone" />
         </ProfileButton>
       </Header>
 
