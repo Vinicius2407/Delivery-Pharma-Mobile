@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import {TrashSimple} from 'phosphor-react-native';
-import { Highlight, styles } from "../../globals/styles.global";
+import { Highlight, RowJustifyBetween, styles } from "../../globals/styles.global";
 import { formatCurrency } from "../../utils/format.util";
 import { useCart } from "../../contexts/CartContext";
 import { List } from "../List";
@@ -16,7 +16,7 @@ export function CartItems() {
 
     return (
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <RowJustifyBetween>
                 <Highlight>
                     Seu carrinho
                 </Highlight>
@@ -29,7 +29,7 @@ export function CartItems() {
                         Limpar
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </RowJustifyBetween>
             <List
                 data={productsCart}
                 // style={{ paddingTop: 10, marginBottom: -16 }}
@@ -47,24 +47,18 @@ export function CartItems() {
             />
             <View style={{ width: '100%', flexDirection: 'column' }}>
                 <Highlight>Resumo</Highlight>
-                <View 
-                    style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
-                >
+                <RowJustifyBetween>
                     <Text>Subtotal dos produtos</Text>
                     <Text>{ formatCurrency(110.98)}</Text>
-                </View>
-                <View 
-                    style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
-                >
+                </RowJustifyBetween>
+                <RowJustifyBetween>
                     <Text>Taxa de entrega</Text>
                     <Text>{ formatCurrency(5)}</Text>
-                </View>
-                <View 
-                    style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
-                >
+                </RowJustifyBetween>
+                <RowJustifyBetween>
                     <Highlight>Total do pedido</Highlight>
                     <Highlight>{ formatCurrency(115.98)}</Highlight>
-                </View>
+                </RowJustifyBetween>
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={{ marginTop: 40, paddingVertical: 10, borderRadius: 10, backgroundColor: styles.colors.green, flexDirection: 'row', justifyContent: 'center' }}
