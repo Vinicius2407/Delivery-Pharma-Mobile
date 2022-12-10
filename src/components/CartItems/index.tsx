@@ -12,7 +12,7 @@ interface RenderItemProps {
 }
 
 export function CartItems() {
-    const { productsCart } = useCart();
+    const { productsCart, getTotalParcial, clearProductsFromCart } = useCart();
 
     return (
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -21,7 +21,7 @@ export function CartItems() {
                     Seu carrinho
                 </Highlight>
                 <TouchableOpacity
-                    onPress={() => console.log('Limpar tudo')}
+                    onPress={() => clearProductsFromCart()}
                     style={{ flexDirection: 'row', alignItems: 'center', padding: 4 }}
                 >
                     <TrashSimple color={styles.colors.red} size={15} />
@@ -49,15 +49,16 @@ export function CartItems() {
                 <Highlight>Resumo</Highlight>
                 <RowJustifyBetween>
                     <Text>Subtotal dos produtos</Text>
-                    <Text>{ formatCurrency(110.98)}</Text>
+                    <Text>{formatCurrency(getTotalParcial())}</Text>
+                    
                 </RowJustifyBetween>
                 <RowJustifyBetween>
-                    <Text>Taxa de entrega</Text>
-                    <Text>{ formatCurrency(5)}</Text>
+                    {/* <Text>Taxa de entrega</Text>
+                    <Text>{ formatCurrency(5)}</Text> */}
                 </RowJustifyBetween>
                 <RowJustifyBetween>
-                    <Highlight>Total do pedido</Highlight>
-                    <Highlight>{ formatCurrency(115.98)}</Highlight>
+                    {/* <Highlight>Total do pedido</Highlight>
+                    <Highlight>{ formatCurrency(115.98)}</Highlight> */}
                 </RowJustifyBetween>
                 <TouchableOpacity
                     activeOpacity={0.8}
