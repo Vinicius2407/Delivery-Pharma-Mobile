@@ -19,13 +19,13 @@ export function HorizontalCategories({ showOnlyFavorites }: HorizontalCategories
     navigation.navigate("CategoryProducts" as never, { category } as never);
   }
 
-  // useEffect(() => {
-  //   const getCategoriesFromBackend = async () => {
-  //     const { data } = await axios.get<CategoryDataBackend[]>("http://192.168.42.133:8080/categoria")
-  //     setCategories(data)
-  //   }
-  //   getCategoriesFromBackend().catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    const getCategoriesFromBackend = async () => {
+      const { data } = await axios.get<CategoryDataBackend[]>("http://192.200.42.39:8080/categoria")
+      setCategories(data)
+    }
+    getCategoriesFromBackend().catch((error) => console.log(error));
+  }, []);
 
   return (
     <Container>

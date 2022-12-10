@@ -19,63 +19,63 @@ export function Products() {
   const { productsCart } = useCart()
   // console.log(productsCart)
 
-  const bottomSheetExpand = () => bottomSheetRef.current?.expand()
+  const bottomSheetExpand = () => bottomSheetRef.current?.expand();
   const bottomSheetClose = () => bottomSheetRef.current?.close()
 
   return (
     <Wrapper>
-      <SearchInput />
+    <SearchInput />
 
-      {/* <Subtitle>
-        <Highlight>Favoritos</Highlight>
-      </Subtitle> */}
+    {/* <Subtitle>
+    <Highlight>Favoritos</Highlight>
+  </Subtitle> */}
 
-      {/* <HorizontalCategories showOnlyFavorites /> */}
+  {/* <HorizontalCategories showOnlyFavorites /> */}
 
-      <Subtitle>
-        <Highlight>Categorias</Highlight>
-      </Subtitle>
+  <Subtitle>
+  <Highlight>Categorias</Highlight>
+  </Subtitle>
 
-      <ScrollView>
-        <VerticalCategories />
-      </ScrollView>
+  <ScrollView>
+  <VerticalCategories />
+  </ScrollView>
 
-      { productsCart && productsCart.length > 0 && (
-        <CartButton 
-          quantidade={productsCart.length} 
-          onPress={bottomSheetExpand} 
-        />
+  { productsCart && productsCart.length > 0 && (
+    <CartButton
+    quantidade={productsCart.length}
+    onPress={bottomSheetExpand}
+    />
+    )}
+
+    <BottomSheet
+    ref={bottomSheetRef}
+    index={-1}
+    snapPoints={snapPoints}
+    handleIndicatorStyle={{
+      backgroundColor: styles.colors.border,
+      width: '15%'
+    }}
+    enablePanDownToClose
+    handleStyle={{
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+    }}
+    backgroundStyle={{
+      backgroundColor: styles.colors.background,
+    }}
+    backdropComponent={(backdropProps) => (
+      <BottomSheetBackdrop {...backdropProps} enableTouchThrough={true} />
       )}
+      style={{
+        paddingHorizontal: 16
+      }}
 
-      <BottomSheet
-            ref={bottomSheetRef}
-            index={-1}
-            snapPoints={snapPoints}
-            handleIndicatorStyle={{
-                backgroundColor: styles.colors.border,
-                width: '15%'
-            }}
-            enablePanDownToClose
-            handleStyle={{
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-            }}
-            backgroundStyle={{
-                backgroundColor: styles.colors.background,
-            }}
-            backdropComponent={(backdropProps) => (
-              <BottomSheetBackdrop {...backdropProps} enableTouchThrough={true} />
-            )}
-            style={{
-              paddingHorizontal: 16
-            }}
-            
-        >
-          <TouchableOpacity onPress={bottomSheetClose}>
-            <Icon.X size={25} color={styles.colors.heading}/>
-          </TouchableOpacity>
-          <CartItems />
-        </BottomSheet>  
-    </Wrapper>
-  );
-}
+      >
+      <TouchableOpacity onPress={bottomSheetClose}>
+      <Icon.X size={25} color={styles.colors.heading}/>
+      </TouchableOpacity>
+      <CartItems />
+      </BottomSheet>
+      </Wrapper>
+      );
+    }

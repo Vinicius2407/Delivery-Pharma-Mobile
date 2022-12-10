@@ -27,7 +27,7 @@ export interface CategoryDataBackend {
 export interface CartProductItem {
     id: number;
     nome: string
-    imagem: string;
+    imagem: string | null;
     valor_unitario: number;
     quantidade: number;
     // valor_total: number;
