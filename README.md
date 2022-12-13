@@ -45,3 +45,8 @@ Por fim, deve-se rodar o comando:
 <code>expo start</code>
 
 Isso irá iniciar a aplicação no navegador, com o QR Code para rodar no celular.
+
+
+## Repositório do Back-End
+
+(https://github.com/matheusluan/delivery_pharmacia)
