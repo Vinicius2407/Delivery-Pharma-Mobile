@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import { User } from "phosphor-react-native";
-
 import { Wrapper } from "../../components/Wrapper";
 import { SearchInput } from "../../components/SearchInput";
 import { HorizontalCategories } from "../../components/HorizontalCategories";
@@ -9,6 +8,7 @@ import { Divider, Highlight, styles } from "../../globals/styles.global";
 import { Header, ProfileButton, Subtitle, Title, Username } from "./styles";
 
 export function Home() {
+  
   const navigation = useNavigation();
 
   function handleGoToAccountScreen() {

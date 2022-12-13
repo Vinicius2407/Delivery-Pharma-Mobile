@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
+import { Provider as PaperProvider } from 'react-native-paper'
 import { useFonts } from "./src/hooks/fonts.hook";
 
 import { AuthenticationProvider } from "./src/contexts/AuthenticationContext";
@@ -28,8 +29,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthenticationProvider>
-        <StatusBar style="dark" backgroundColor={styles.colors.background} translucent={false} />
-        <Routes />
+        <PaperProvider>  
+          <StatusBar style="dark" backgroundColor={styles.colors.background} translucent={false} />
+          <Routes />
+        </PaperProvider>
       </AuthenticationProvider>
     </NavigationContainer>
   );

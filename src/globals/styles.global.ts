@@ -42,13 +42,14 @@ export const Highlight = styled.Text`
 
 export const Divider = styled.View`
   height: 1px;
-  background: ${styles.colors.border};
+  background-color: ${styles.colors.border};
   margin: 5px 0;
 `;
 
 export const Row = styled.View`
   flex-direction: row;
   align-items: center;
+  background: transparent;
 `;
 
 export const RowJustifyCenter = styled.View`

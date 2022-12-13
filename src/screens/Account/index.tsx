@@ -1,9 +1,16 @@
+import { useNavigation } from "@react-navigation/native";
 import * as Icon from "phosphor-react-native";
 import { Wrapper } from "../../components/Wrapper";
 import { Divider, styles } from "../../globals/styles.global";
 import { Title, Row, LogOutButton, Column, UserAvatar, Button } from "./styles";
 
 export function Account() {
+    const navigation = useNavigation()
+
+    function handleGoToMyPersonalData() {
+        navigation.navigate("UserPersonalData" as never)
+    }
+    
     return (
         <Wrapper>
             <Row>
@@ -28,7 +35,10 @@ export function Account() {
                     </Button>
                 </Row>
                 <Row style={{ marginTop: -25, width: '50%', justifyContent: 'center', backgroundColor: 'transparent' }}>
-                    <Button style={{ backgroundColor: styles.colors.blue, borderRadius: 30, padding: 15 }}>
+                    <Button 
+                        style={{ backgroundColor: styles.colors.blue, borderRadius: 30, padding: 15 }}
+                        onPress={handleGoToMyPersonalData}
+                    >
                         <Icon.UserGear size={35} color={styles.colors.contrast}/>
                     </Button>
                 </Row>

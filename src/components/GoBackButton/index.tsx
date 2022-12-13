@@ -3,8 +3,11 @@ import * as Icon from "phosphor-react-native";
 
 import { BackButton } from "./styles";
 import { styles } from "../../globals/styles.global";
+import { TouchableOpacityProps } from "react-native";
 
-export function GoBackButton() {
+interface GoBackButtonProps extends TouchableOpacityProps {}
+
+export function GoBackButton(props: GoBackButtonProps) {
   const navigation = useNavigation();
 
   function handleGoBack() {
@@ -12,7 +15,7 @@ export function GoBackButton() {
   }
 
   return (
-    <BackButton onPress={handleGoBack} activeOpacity={0.7}>
+    <BackButton onPress={handleGoBack} activeOpacity={0.7} { ...props } >
       <Icon.CaretLeft color={styles.colors.heading} size={25} />
     </BackButton>
   );

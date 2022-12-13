@@ -11,6 +11,9 @@ import { CategoryProducts } from "../screens/CategoryProducts";
 
 import { styles } from "../globals/styles.global";
 import { ProductDetails } from "../screens/ProductDetails";
+import { UserPersonalData } from "../screens/MyPersonalData";
+import { EditUserInformations } from "../screens/EditUserInformations";
+import { EditLoginInformations } from "../screens/EditUserLoginInformations";
 
 const Tab = createBottomTabNavigator();
 
@@ -109,6 +112,26 @@ export function AppRoutes() {
       <Stack.Screen
         component={ProductDetails}
         name="ProductDetails"
+        options={{ animation: "fade" }}
+      />
+      <Stack.Screen
+        component={UserPersonalData}
+        name="MyPersonalData"
+        options={{ animation: "fade" }}
+      />
+      <Stack.Screen
+        component={UserPersonalData}
+        name="UserPersonalData"
+        options={{ animation: "fade" }}
+      />
+      <Stack.Screen
+        component={EditUserInformations}
+        name="EditUserInformations"
+        options={{ animation: "fade" }}
+      />
+      <Stack.Screen
+        component={EditLoginInformations}
+        name="EditLoginInformations"
         options={{ animation: "fade" }}
       />
     </Stack.Navigator>

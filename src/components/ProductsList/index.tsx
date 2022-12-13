@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import * as Icon from "phosphor-react-native";
+import { ArrowSquareOut, CameraSlash } from "phosphor-react-native";
 import axios from "axios";
 import { List } from "../List";
 import { Divider, styles } from "../../globals/styles.global";
@@ -26,14 +26,14 @@ export function ProductsList({ categoryId }: ProductsListProps) {
     navigation.navigate("ProductDetails" as never, { product } as never);
   }
 
-  useEffect(() => {
-    const getProductsFromDB = async () => {
-      const url = categoryId ? `http://192.200.42.39:8080/produto/categoria/${categoryId}` : "http://192.200.42.39:8080/produto"; 
-      const { data } = await axios.get<ProductDataBackend[]>(url)
-      setProducts(data)
-    }
-    getProductsFromDB().catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   const getProductsFromDB = async () => {
+  //     const url = categoryId ? `http://192.200.42.39:8080/produto/categoria/${categoryId}` : "http://192.200.42.39:8080/produto"; 
+  //     const { data } = await axios.get<ProductDataBackend[]>(url)
+  //     setProducts(data)
+  //   }
+  //   getProductsFromDB().catch((error) => console.log(error));
+  // }, []);
 
   return (
     <List
@@ -60,10 +60,10 @@ export function ProductsList({ categoryId }: ProductsListProps) {
               {item.imagem ? (
                 <Image source={{ uri: item.imagem }} resizeMode="contain" />
               ) : (
-                <Icon.CameraSlash color={styles.colors.border} size={30} />
+                <CameraSlash color={styles.colors.border} size={30} />
               )}
             </ImageContainer>
-            <Icon.ArrowSquareOut style={{ alignSelf: "flex-start" }} color={styles.colors.blue} size={15} weight="fill" />
+            <ArrowSquareOut style={{ alignSelf: "flex-start" }} color={styles.colors.blue} size={15} weight="fill" />
           </Row>
           <Title numberOfLines={2}>{item.nome}</Title>
           <Divider />
