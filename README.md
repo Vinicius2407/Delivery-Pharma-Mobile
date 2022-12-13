@@ -49,4 +49,4 @@ Isso irá iniciar a aplicação no navegador, com o QR Code para rodar no celula
 
 ## Repositório do Back-End
 
-(https://github.com/matheusluan/delivery_pharmacia)
+[Delivery Pharma Back-End](https://github.com/matheusluan/delivery_pharmacia)
