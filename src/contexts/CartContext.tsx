@@ -37,7 +37,7 @@ export function CartProvider({ children }: CartProviderProps) {
     const [productsCart, setProductsCart] = useState<CartProductItem[]>(initialProducts);
 
     // const getProductIfNotExit = async(id:number) => {
-    //     const { data } = await axios.get<ProductDataBackend>(`http://192.200.42.39:8080/produto/${id}`)
+    //     const { data } = await axios.get<ProductDataBackend>(`http://localhost:8080/produto/${id}`)
     //     return data;
     // }
 
@@ -47,7 +47,7 @@ export function CartProvider({ children }: CartProviderProps) {
         const item = copyProductsCart.find((product) => product.id == id)
 
         if (!item) {
-            // axios.get(`http://192.200.42.39:8080/produto/${id}`)
+            // axios.get(`http://localhost:8080/produto/${id}`)
             //     .then((resp) => {
             //         const result = resp.data as ProductDataBackend
             //         copyProductsCart.push({

@@ -32,6 +32,7 @@ export const styles = {
 
 export const Text = styled.Text`
   font-family: ${styles.fonts.regular};
+  font-size: ${styles.sizes.body};
   color: ${styles.colors.body};
 `;
 
@@ -44,6 +45,17 @@ export const Divider = styled.View`
   height: 1px;
   background-color: ${styles.colors.border};
   margin: 5px 0;
+`;
+
+export const VerticalDivider = styled.View`
+  width: 1px;
+  height: 100%;
+  background-color: ${styles.colors.border};
+  margin: 5px 0;
+`;
+
+export const Box = styled.View`
+  width: 100%;
 `;
 
 export const Row = styled.View`
@@ -70,3 +82,11 @@ export const Column = styled.View`
   flex-direction: column;
   align-items: flex-start;
 `;
+
+export const ColumnJustifyBetween = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+

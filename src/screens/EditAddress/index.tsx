@@ -3,9 +3,9 @@ import { TextInput } from "react-native-paper";
 import { SimpleButton } from '../../components/Button';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
-import { Box, Column, ColumnJustifyBetween, Highlight, Row, RowJustifyBetween, styles } from "../../globals/styles.global";
+import { Box, ColumnJustifyBetween, Highlight, RowJustifyBetween, styles } from "../../globals/styles.global";
 
-export function EditUserInformations() {
+export function EditAddress() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -20,8 +20,9 @@ export function EditUserInformations() {
                         <GoBackButton disabled style={{ opacity: 0 }} />
                     </RowJustifyBetween>
                     <TextInput 
-                        label="Nome"
+                        label="C.E.P"
                         mode="outlined"
+                        keyboardType='numeric'
                         value={nome}
                         onChangeText={text => setNome(text)}
                         // left={<User color={styles.colors.green} size={15} />}

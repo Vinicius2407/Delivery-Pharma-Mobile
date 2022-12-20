@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TextInput, TextInputProps } from "react-native-paper";
+import { transparent } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
 import { Highlight, RowJustifyBetween, styles } from "../../globals/styles.global";
@@ -26,7 +27,7 @@ export function EditLoginInformations() {
                 // left={<User color={styles.colors.green} size={15} />}
                 outlineColor={styles.colors.heading}
                 activeOutlineColor={styles.colors.heading}
-                style={{ backgroundColor: styles.colors.contrast, marginTop: 16, fontFamily: styles.fonts.regular, borderRadius: 8 }}
+                style={{ backgroundColor: styles.colors.background , marginTop: 16, fontFamily: styles.fonts.regular, borderRadius: 8 }}
                 onPointerEnter={undefined} 
                 onPointerEnterCapture={undefined} 
                 onPointerLeave={undefined} 

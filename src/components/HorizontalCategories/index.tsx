@@ -21,7 +21,7 @@ export function HorizontalCategories({ showOnlyFavorites }: HorizontalCategories
 
   // useEffect(() => {
   //   const getCategoriesFromBackend = async () => {
-  //     const { data } = await axios.get<CategoryDataBackend[]>("http://192.200.42.39:8080/categoria")
+  //     const { data } = await axios.get<CategoryDataBackend[]>("http://localhost:8080/categoria")
   //     setCategories(data)
   //   }
   //   getCategoriesFromBackend().catch((error) => console.log(error));
