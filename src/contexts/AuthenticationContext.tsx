@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface AuthenticationProviderProps {
   children: React.ReactNode;
@@ -11,10 +11,22 @@ interface AuthenticationContextData {
 const AuthenticationContext = createContext({} as AuthenticationContextData);
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
+  const [user, setUser] = useState(null);
+  const isAuthenticated = !!user;
+
+  async function signIn() { 
+    //const {data} = api.post('/auth.....', {
+    //   username,
+    //   password,
+    // })
+
+    // setUser(data.user);
+  }
+
   return (
     <AuthenticationContext.Provider
       value={{
-        isAuthenticated: true,
+        isAuthenticated,
       }}
     >
       {children}

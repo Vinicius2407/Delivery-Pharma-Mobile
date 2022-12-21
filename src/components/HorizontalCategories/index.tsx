@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Card, CardCategory, Container, ScrollView, Title } from "./styles";
 import { styles } from "../../globals/styles.global";
 import { CategoryDataBackend } from '../../utils/interfaces.backend'
+import { api } from '../../services/api.service';
 
 interface HorizontalCategoriesProps {
   showOnlyFavorites?: boolean;
@@ -19,13 +20,14 @@ export function HorizontalCategories({ showOnlyFavorites }: HorizontalCategories
     navigation.navigate("CategoryProducts" as never, { category } as never);
   }
 
-  // useEffect(() => {
-  //   const getCategoriesFromBackend = async () => {
-  //     const { data } = await axios.get<CategoryDataBackend[]>("http://localhost:8080/categoria")
-  //     setCategories(data)
-  //   }
-  //   getCategoriesFromBackend().catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    const getCategoriesFromBackend = async () => {
+      const { data } = await api.get<CategoryDataBackend[]>("/categoria")
+      // const { data } = await axios.get<CategoryDataBackend[]>("http://192.168.100.252:8080/categoria")
+      setCategories(data)
+    }
+    getCategoriesFromBackend().catch((error) => console.log(error));
+  }, []);
 
   return (
     <Container>

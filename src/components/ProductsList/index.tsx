@@ -7,6 +7,7 @@ import { Divider, styles } from "../../globals/styles.global";
 import { Image, ImageContainer, Item, Price, Row, Title } from "./styles";
 import { formatCurrency } from "../../utils/format.util";
 import { ProductDataBackend } from '../../utils/interfaces.backend'
+import { api } from "../../services/api.service";
 
 interface ProductsListProps {
   categoryId?: number;
@@ -26,14 +27,16 @@ export function ProductsList({ categoryId }: ProductsListProps) {
     navigation.navigate("ProductDetails" as never, { product } as never);
   }
 
-  // useEffect(() => {
-  //   const getProductsFromDB = async () => {
-  //     const url = categoryId ? `http://localhost:8080/produto/categoria/${categoryId}` : "http://localhost:8080/produto"; 
-  //     const { data } = await axios.get<ProductDataBackend[]>(url)
-  //     setProducts(data)
-  //   }
-  //   getProductsFromDB().catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    const getProductsFromDB = async () => {
+      const url = categoryId ? `/produto/categoria/${categoryId}` : "/produto";
+      // const url = categoryId ? `http://localhost:8080/produto/categoria/${categoryId}` : "http://localhost:8080/produto";
+      // const { data } = await axios.get<ProductDataBackend[]>(url)
+      const { data } = await api.get(url);
+      setProducts(data)
+    }
+    getProductsFromDB().catch((error) => console.log(error));
+  }, []);
 
   return (
     <List

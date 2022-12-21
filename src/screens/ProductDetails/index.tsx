@@ -44,9 +44,6 @@ export function ProductDetails() {
     <Wrapper>
       <Row style={{ paddingBottom: 16 }}>
         <GoBackButton />
-        <FavoriteButton>
-          <Heart color={styles.colors.heading} size={25} />
-        </FavoriteButton>
       </Row>
       <ImageContainer>
         {product.imagem ? (
@@ -55,14 +52,16 @@ export function ProductDetails() {
           <CameraSlash color={styles.colors.border} size={108} />
         )}
       </ImageContainer>
-      <Row>
+      {/* <Row> */}
         <Title numberOfLines={2} ellipsizeMode="tail" style={{ fontSize: 22 }}>
-          {`${product.nome} - ${product.conteudo}`}
+          {/* {`${product.nome} - ${product.conteudo}`} */}
+          {product.nome}
+          {product.conteudo && ` - ${product.conteudo}`}
         </Title>
         <Title numberOfLines={2} ellipsizeMode="tail">
           {product.categoria.descricao}
         </Title>
-      </Row>
+      {/* </Row> */}
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, marginTop: 20}}>
         <Highlight style={{ fontSize: 18, marginTop: 20 }}>Descrição</Highlight>
         <Description>{`${product.descricao}\n${product.uso}`}</Description>
