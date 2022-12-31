@@ -14,7 +14,7 @@ export function SignIn() {
                 <Input type="password" label="Senha" icon="Lock" />
             </InputContainer>
 
-            <SimpleButton title="Entrar" style={{backgroundColor: styles.colors.green, marginTop: 16}} onPress={() => {}} />
+            <SimpleButton title="Entrar" style={{backgroundColor: styles.colors.blue, marginTop: 16}} onPress={() => {}} />
         </Wrapper>
     )
 }

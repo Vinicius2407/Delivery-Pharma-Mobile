@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { SimpleButton } from '../../components/Button';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
@@ -16,78 +16,58 @@ interface CepDataProps {
     uf: string;
 }
 
-interface IAddress {
-    id: number;
-    cep: string;
-    descricao: string;
-    logradouro: string;
-    numero: string;
-    bairro: string;
-    cidade: string;
-    estado: string;
-    principal: boolean;
-    observacao: string;
-}
+export function NewAddress() {
+    const navigation = useNavigation()
 
-interface RouteParams {
-    address: IAddress;
-}
+    const [cep, setCep] = useState('')
+    const [descricao, setDescricao] = useState('')
+    const [logradouro, setLogradouro] = useState('')
+    const [bairro, setBairro] = useState('')
+    const [numero, setNumero] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [estado, setEstado] = useState('')
+    const [observacao, setObservacao] = useState('')
 
-export function EditAddress() {
-    //const navigation = useNavigation()
+    //const [isLoadingCep, setIsLoadingCep] = useState(false)
 
-    const route = useRoute()
-    const { address } = route.params as RouteParams
+    const handleConsultaCEP = async() => {
+        try {
+            const cepData = await consultarCEP(cep) as CepDataProps | false
+            if (!cepData) {
+                Alert.alert('C.E.P inválido', 'C.E.P não é de Foz do Iguaçu ou número de caracteres inválido, por favor, verifique!')
+                return false
+            }else{
+                const { logradouro, bairro, localidade, uf } = cepData
+                setLogradouro(logradouro)
+                setBairro(bairro)
+                setCidade(localidade)
+                setEstado(uf)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    const [cep, setCep] = useState(address.cep)
-    const [descricao, setDescricao] = useState(address.descricao)
-    const [logradouro, setLogradouro] = useState(address.logradouro)
-    const [bairro, setBairro] = useState(address.bairro)
-    const [numero, setNumero] = useState(address.numero)
-    const [cidade, setCidade] = useState(address.cidade)
-    const [estado, setEstado] = useState(address.estado)
-    const [observacao, setObservacao] = useState(address.observacao)
-
-    
-
-    // const handleConsultaCEP = async() => {
-    //     try {
-    //         const cepData = await consultarCEP(cep) as CepDataProps | false
-    //         if (!cepData) {
-    //             Alert.alert('C.E.P inválido', 'C.E.P não é de Foz do Iguaçu ou número de caracteres inválido, por favor, verifique!')
-    //             return false
-    //         }else{
-    //             const { logradouro, bairro, localidade, uf } = cepData
-    //             setLogradouro(logradouro)
-    //             setBairro(bairro)
-    //             setCidade(localidade)
-    //             setEstado(uf)
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // function handleUpdateAddress() {
-    //     /*axios.put('http://192.168.0.106:8080/cliente/endereco/2', {
-    //         descricao,
-    //         logradouro,
-    //         bairro,
-    //         numero,
-    //         cidade,
-    //         estado,
-    //         cep,
-    //         principal: false
-    //     })
-    //     .then((resp) => {
-    //         console.log(resp.status)
-    //         Alert.alert('Endereço', 'Endereço cadastrado com sucesso!', [], {
-    //             cancelable: true,
-    //             onDismiss: () => navigation.goBack()
-    //         })
-    //     })
-    //     .catch((error) => console.log(error.message))*/
-    // }
+    function handleAddNewAddress() {
+        axios.put('http://192.168.0.106:8080/cliente/endereco/2', {
+            descricao,
+            logradouro,
+            bairro,
+            numero,
+            cidade,
+            estado,
+            cep,
+            principal: false
+        })
+        .then((resp) => {
+            console.log(resp.status)
+            Alert.alert('Endereço', 'Endereço cadastrado com sucesso!', [], {
+                cancelable: true,
+                onDismiss: () => navigation.goBack()
+            })
+        })
+        .catch((error) => console.log(error.message))
+    }
 
     return (
         <Wrapper>
@@ -97,7 +77,7 @@ export function EditAddress() {
                         <RowJustifyBetween>
                             <GoBackButton />
                             <Highlight style={{ fontSize: 16, textTransform: 'uppercase' }}>
-                                editar endereço
+                                cadastrar novo endereço
                             </Highlight>
                             <GoBackButton disabled style={{ opacity: 0 }} />
                         </RowJustifyBetween>
@@ -115,7 +95,7 @@ export function EditAddress() {
                                 keyboardType='numeric'
                                 value={cep}
                                 onChangeText={(text) => setCep(text)}
-                                //onBlur={handleConsultaCEP}
+                                onBlur={handleConsultaCEP}
                                 maxLength={8}
                             />
                         </InputContainer>
@@ -171,11 +151,11 @@ export function EditAddress() {
                     </Box>
 
                     <SimpleButton 
-                        title='Atualizar'
+                        title='Salvar'
                         styles={{ backgroundColor: styles.colors.green }}
                         textStyles={{ fontSize: 18 }}
                         activeOpacity={0.8}
-                        //onPress={handleUpdateAddress}
+                        onPress={handleAddNewAddress}
                     />
                 </ColumnJustifyBetween>
             </TouchableWithoutFeedback>

@@ -90,3 +90,7 @@ export const ColumnJustifyBetween = styled.View`
   justify-content: space-between;
 `;
 
+export const InputContainer = styled.View`
+  margin-top: 16px;
+`;
+

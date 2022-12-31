@@ -26,7 +26,7 @@ export function ProductDetails() {
   // const { product } = route.params as RouteParamsData;
 
   const productCart = productsCart.find((item) => item.id == product.id)
-  console.log(productCart)
+  // console.log(productCart)
 
   // const beforeAddProductToCart = () => {
   //   const newItem = {

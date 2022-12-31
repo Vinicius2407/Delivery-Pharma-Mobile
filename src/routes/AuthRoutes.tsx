@@ -5,8 +5,14 @@ const Stack = createNativeStackNavigator();
 
 export function AuthRoutes() {
   return ( 
-    <Stack.Navigator initialRouteName="SignIn">
-      <Stack.Screen name="SignIn" component={SignIn} />
+    <Stack.Navigator 
+      initialRouteName="SignIn" 
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen 
+        name="SignIn" 
+        component={SignIn} 
+      />
       {/* <Stack.Screen name="SignUp" component={SignUp} /> */}
     </Stack.Navigator>
   );

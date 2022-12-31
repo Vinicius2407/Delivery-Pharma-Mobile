@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { TextInput } from "react-native-paper";
 import { SimpleButton } from '../../components/Button';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
@@ -19,7 +18,7 @@ export function EditUserInformations() {
                         <Highlight style={{ fontSize: 16 }}>EDITAR INFORMAÇÕES PESSOAIS</Highlight>
                         <GoBackButton disabled style={{ opacity: 0 }} />
                     </RowJustifyBetween>
-                    <TextInput 
+                    {/* <TextInput 
                         label="Nome"
                         mode="outlined"
                         value={nome}
@@ -88,7 +87,7 @@ export function EditUserInformations() {
                         onPointerUp={undefined} 
                         onPointerUpCapture={undefined} 
                         cursorColor={undefined}
-                    />
+                    /> */}
                 </Box>
 
                 <SimpleButton 

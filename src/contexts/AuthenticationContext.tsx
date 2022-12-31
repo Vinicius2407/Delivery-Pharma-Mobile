@@ -12,7 +12,8 @@ const AuthenticationContext = createContext({} as AuthenticationContextData);
 
 export function AuthenticationProvider({ children }: AuthenticationProviderProps) {
   const [user, setUser] = useState(null);
-  const isAuthenticated = !!user;
+  // const isAuthenticated = !!user;
+  const isAuthenticated = true;
 
   async function signIn() { 
     //const {data} = api.post('/auth.....', {

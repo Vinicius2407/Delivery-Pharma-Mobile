@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { TextInput, TextInputProps } from "react-native-paper";
-import { transparent } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
 import { Highlight, RowJustifyBetween, styles } from "../../globals/styles.global";
@@ -19,7 +17,7 @@ export function EditLoginInformations() {
                 <GoBackButton disabled style={{ opacity: 0 }} />
             </RowJustifyBetween>
 
-            <TextInput 
+            {/* <TextInput 
                 label="E-mail"
                 mode="outlined"
                 value={email}
@@ -64,7 +62,7 @@ export function EditLoginInformations() {
                 onPointerUp={undefined} 
                 onPointerUpCapture={undefined} 
                 cursorColor={undefined}
-            />
+            /> */}
         </Wrapper>
     )
 }

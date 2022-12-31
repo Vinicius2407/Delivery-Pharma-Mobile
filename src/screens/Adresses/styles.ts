@@ -2,13 +2,12 @@ import styled from "styled-components/native";
 import { styles } from "../../globals/styles.global";
 
 export const AdressContainer = styled.View`
-    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
     border: 1px solid ${styles.colors.border};
     border-radius: 10px;
     margin-top: 16px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 `;
 
 export const Toggle = styled.TouchableOpacity`
@@ -21,6 +20,7 @@ export const Toggle = styled.TouchableOpacity`
 `;
 
 export const Button = styled.TouchableOpacity`
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100%;

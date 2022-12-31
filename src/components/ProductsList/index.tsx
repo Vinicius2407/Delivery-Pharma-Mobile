@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowSquareOut, CameraSlash } from "phosphor-react-native";
-import axios from "axios";
+//import axios from "axios";
 import { List } from "../List";
 import { Divider, styles } from "../../globals/styles.global";
 import { Image, ImageContainer, Item, Price, Row, Title } from "./styles";
