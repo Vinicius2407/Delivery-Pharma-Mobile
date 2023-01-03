@@ -6,7 +6,8 @@ import { Divider } from "../../globals/styles.global";
 import { ProductsList } from "../../components/ProductsList";
 import { GoBackButton } from "../../components/GoBackButton";
 import { Row, Title } from "./styles";
-import { CategoryDataBackend } from "../../components/HorizontalCategories";
+import { CategoryDataBackend } from "../../utils/interfaces.backend";
+//import { CategoryDataBackend } from "../../components/HorizontalCategories";
 
 // interface RouteParamsData {
 //   category: {
@@ -16,7 +17,7 @@ import { CategoryDataBackend } from "../../components/HorizontalCategories";
 // }
 
 interface RouteParamsData {
-  category: CategoryDataBackend
+  category: CategoryDataBackend;
 }
   
 

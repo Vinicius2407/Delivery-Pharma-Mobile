@@ -1,17 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
 import * as Icon from "phosphor-react-native";
 import { Wrapper } from "../../components/Wrapper";
+import { useAuthentication } from "../../contexts/AuthenticationContext";
 import { Divider, styles } from "../../globals/styles.global";
 import { Title, Row, LogOutButton, Column, UserAvatar, Button } from "./styles";
 
 export function Account() {
+    //const { user } = useAuthentication()
     const navigation = useNavigation()
 
     function handleGoToAdresses() {
         navigation.navigate("Adresses" as never)
     }
     
-    function handleGoToMyPersonalData() {
+    function handleGoToAccountData() {
         navigation.navigate("UserPersonalData" as never)
     }
 
@@ -33,7 +35,7 @@ export function Account() {
                 <Row style={{ width: '55%' }}>
                     <Button 
                         style={{ backgroundColor: styles.colors.blue, borderRadius: 30, padding: 15 }}
-                        onPress={handleGoToMyPersonalData}
+                        onPress={handleGoToAccountData}
                     >
                         <Icon.UserGear size={35} color={styles.colors.contrast}/>
                     </Button>

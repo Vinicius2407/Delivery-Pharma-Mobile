@@ -8,7 +8,7 @@ import { BoxContainer, BoxContainerTitle, BoxContainerButton, BoxContainerButton
 export function UserPersonalData() {
     const navigation = useNavigation()
 
-    const handleEditUserInformations = () => navigation.navigate('EditUserInformations' as  never)
+    const handleEditUserData = () => navigation.navigate('EditUserData' as  never)
     const handleEditLoginInformations = () => navigation.navigate('EditLoginInformations' as  never)
 
     return (
@@ -46,7 +46,7 @@ export function UserPersonalData() {
                     </Column>
                 </Row>
                 <Divider />
-                <BoxContainerButton onPress={handleEditUserInformations}>
+                <BoxContainerButton onPress={handleEditUserData}>
                     <BoxContainerButtonText>
                         Atualizar informações pessoais
                     </BoxContainerButtonText>
