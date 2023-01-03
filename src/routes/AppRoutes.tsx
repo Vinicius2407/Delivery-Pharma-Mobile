@@ -11,9 +11,9 @@ import { CategoryProducts } from "../screens/CategoryProducts";
 
 import { styles } from "../globals/styles.global";
 import { ProductDetails } from "../screens/ProductDetails";
-import { UserPersonalData } from "../screens/MyPersonalData";
-import { EditUserInformations } from "../screens/EditUserInformations";
-import { EditLoginInformations } from "../screens/EditUserLoginInformations";
+import { UserPersonalData } from "../screens/AccountData";
+import { EditUserData } from "../screens/EditUserData";
+import { EditLoginInformations } from "../screens/EditUserLoginData";
 import { Adresses } from "../screens/Adresses";
 import { EditAddress } from "../screens/EditAddress";
 import { NewAddress } from "../screens/NewAddress";
@@ -119,7 +119,7 @@ export function AppRoutes() {
       />
       <Stack.Screen
         component={UserPersonalData}
-        name="MyPersonalData"
+        name="AccountData"
         options={{ animation: "fade" }}
       />
       <Stack.Screen
@@ -128,8 +128,8 @@ export function AppRoutes() {
         options={{ animation: "fade" }}
       />
       <Stack.Screen
-        component={EditUserInformations}
-        name="EditUserInformations"
+        component={EditUserData}
+        name="EditUserData"
         options={{ animation: "fade" }}
       />
       <Stack.Screen
