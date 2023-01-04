@@ -7,10 +7,15 @@ import { SimpleButton } from '../../components/SimpleButton';
 import { Input } from '../../components/Input';
 import { ButtonIsPasswordEditable } from './styles';
 import { CaretDown, CaretUp } from 'phosphor-react-native';
+import { useAuthentication } from '../../contexts/AuthenticationContext';
+import { api } from '../../services/api.service';
 
 export function EditLoginInformations() {
-    const [email, setEmail] = useState('');
-    const [login, setLogin] = useState('');
+    const { user } = useAuthentication()
+
+
+    const [email, setEmail] = useState(user?.email);
+    const [login, setLogin] = useState(user?.login);
 
     const [senhaAtual, setSenhaAtual] = useState('');
     const [senhaNova, setSenhaNova] = useState('');
@@ -23,6 +28,17 @@ export function EditLoginInformations() {
         setSenhaNova('')
         setConfirmarSenhaNova('')
         setIsPasswordEditable(!isPasswordEditable)
+    }
+
+    const handleUpdateUserLoginData = async() => {
+        // adicionar aqui uma função de validação
+
+        /*const {} = api.put(`/cliente/edit/access-data/${user?.id}`, {
+            email,
+            login,
+
+        }).then((resp) => resp.status)
+        .catch((error) => console.log(error))*/
     }
 
     return (
@@ -125,7 +141,7 @@ export function EditLoginInformations() {
                         styles={{ backgroundColor: styles.colors.green }}
                         textStyles={{ fontSize: 18 }}
                         activeOpacity={0.8}
-                        //onPress={handleUpdateUserData}
+                        //onPress={handleUpdateUserLoginData}
                     />
                 </ColumnJustifyBetween>
             </TouchableWithoutFeedback>

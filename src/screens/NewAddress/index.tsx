@@ -8,6 +8,8 @@ import { Input } from '../../components/Input';
 import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { consultarCEP } from '../../services/api.viacep';
 import axios from 'axios';
+import { addNewAddress } from '../../services/api.address.service';
+import { useAuthentication } from '../../contexts/AuthenticationContext';
 
 interface CepDataProps {
     logradouro: string;
@@ -17,6 +19,8 @@ interface CepDataProps {
 }
 
 export function NewAddress() {
+    const { user } = useAuthentication()
+
     const navigation = useNavigation()
 
     const [cep, setCep] = useState('')
@@ -27,8 +31,6 @@ export function NewAddress() {
     const [cidade, setCidade] = useState('')
     const [estado, setEstado] = useState('')
     const [observacao, setObservacao] = useState('')
-
-    //const [isLoadingCep, setIsLoadingCep] = useState(false)
 
     const handleConsultaCEP = async() => {
         try {
@@ -48,25 +50,15 @@ export function NewAddress() {
         }
     }
 
-    function handleAddNewAddress() {
-        axios.put('http://192.168.0.106:8080/cliente/endereco/2', {
-            descricao,
-            logradouro,
-            bairro,
-            numero,
-            cidade,
-            estado,
-            cep,
-            principal: false
-        })
-        .then((resp) => {
-            console.log(resp.status)
-            Alert.alert('Endereço', 'Endereço cadastrado com sucesso!', [], {
+    async function handleAddNewAddress() {
+        if (user) { //so para tirar o erro, remover  esta linha futuramente
+            const message = await addNewAddress({ cep, descricao, logradouro, bairro, numero, cidade, estado, observacao, principal: false }, user?.id)
+            
+            Alert.alert('Endereço', message , [], {
                 cancelable: true,
                 onDismiss: () => navigation.goBack()
             })
-        })
-        .catch((error) => console.log(error.message))
+        }
     }
 
     return (

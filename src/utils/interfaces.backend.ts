@@ -32,3 +32,16 @@ export interface CartProductItem {
     quantidade: number;
     // valor_total: number;
 }
+
+export interface AddressBackendProps {
+    id?: string;
+    cep: string;
+    descricao: string;
+    logradouro: string;
+    numero: string;
+    bairro: string;
+    cidade: string;
+    estado: string;
+    principal: boolean;
+    observacao: string;
+}

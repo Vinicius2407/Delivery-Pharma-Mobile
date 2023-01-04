@@ -12,6 +12,7 @@ interface CartContextData {
     getProductFromCart: (id: number) => CartProductItem | undefined;
     removeProductFromCart: (id: number) => void;
     clearProductsFromCart: () => void;
+    getProductCountFromCart:(id: number) => number;
     getTotalParcial:() => number;
 }
 
@@ -88,6 +89,15 @@ export function CartProvider({ children }: CartProviderProps) {
         return productsCart.find((item) => item.id == id);
     }
 
+    function getProductCountFromCart(id: number) {
+        const product = productsCart.find((item) => item.id == id)
+        if (product) {
+            return product.quantidade
+        }else {
+            return 0
+        }
+    }
+
     function getTotalParcial() {
         let totalParcial = 0;
         productsCart.forEach((item) => totalParcial = totalParcial + (item.quantidade * item.valor_unitario))
@@ -103,6 +113,7 @@ export function CartProvider({ children }: CartProviderProps) {
                 getProductFromCart,
                 removeProductFromCart,
                 clearProductsFromCart,
+                getProductCountFromCart,
                 getTotalParcial,
             }}
         >
