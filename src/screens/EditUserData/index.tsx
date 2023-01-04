@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { SimpleButton } from '../../components/Button';
+import { SimpleButton } from '../../components/SimpleButton';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
 import { Box, ColumnJustifyBetween, Highlight, RowJustifyBetween, InputContainer, styles } from "../../globals/styles.global";
