@@ -1,4 +1,4 @@
-import { SimpleButton } from "../../components/Button";
+import { SimpleButton } from "../../components/SimpleButton";
 import { Input } from "../../components/Input";
 import { Wrapper } from "../../components/Wrapper";
 import { styles } from "../../globals/styles.global";

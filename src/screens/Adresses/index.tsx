@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowSquareOut, CheckCircle, MinusCircle } from "phosphor-react-native";
-import { SimpleButton } from "../../components/Button";
+import { SimpleButton } from "../../components/SimpleButton";
 import { GoBackButton } from "../../components/GoBackButton";
 import { List } from "../../components/List";
 import { Wrapper } from "../../components/Wrapper";

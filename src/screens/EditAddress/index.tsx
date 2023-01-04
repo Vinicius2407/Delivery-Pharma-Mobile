@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { SimpleButton } from '../../components/Button';
+import { SimpleButton } from '../../components/SimpleButton';
 import { GoBackButton } from "../../components/GoBackButton";
 import { Wrapper } from "../../components/Wrapper";
 import { Box, ColumnJustifyBetween, Highlight, InputContainer, RowJustifyBetween, styles } from "../../globals/styles.global";
