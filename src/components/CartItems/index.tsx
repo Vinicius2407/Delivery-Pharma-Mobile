@@ -32,8 +32,6 @@ export function CartItems() {
             </RowJustifyBetween>
             <List
                 data={productsCart}
-                // style={{ paddingTop: 10, marginBottom: -16 }}
-                // contentContainerStyle={{ paddingBottom: 32 }}
                 renderItem={({ item }: RenderItemProps) => (
                     <CardCartItem 
                         key={item.id}

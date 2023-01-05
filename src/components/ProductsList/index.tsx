@@ -30,8 +30,8 @@ export function ProductsList({ categoryId }: ProductsListProps) {
   useEffect(() => {
     const getProductsFromDB = async () => {
       const url = categoryId ? `/produto/categoria/${categoryId}` : "/produto";
-      // const url = categoryId ? `http://localhost:8080/produto/categoria/${categoryId}` : "http://localhost:8080/produto";
-      // const { data } = await axios.get<ProductDataBackend[]>(url)
+      //const url = categoryId ? `http://localhost:8080/produto/categoria/${categoryId}` : "http://localhost:8080/produto";
+      //const { data } = await axios.get<ProductDataBackend[]>(url)
       const { data } = await api.get(url);
       setProducts(data)
     }

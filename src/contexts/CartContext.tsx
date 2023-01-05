@@ -8,7 +8,7 @@ interface CartProviderProps {
 
 interface CartContextData {
     productsCart: CartProductItem[];
-    addProductToCart: (id: number) => void;
+    addProductToCart: (productItem: CartProductItem) => void;
     getProductFromCart: (id: number) => CartProductItem | undefined;
     removeProductFromCart: (id: number) => void;
     clearProductsFromCart: () => void;
@@ -42,26 +42,17 @@ export function CartProvider({ children }: CartProviderProps) {
     //     return data;
     // }
 
-    function addProductToCart(id: number) {
+    function addProductToCart(productItem: CartProductItem) {
         const copyProductsCart = [...productsCart]
 
-        const item = copyProductsCart.find((product) => product.id == id)
+        const item = copyProductsCart.find((product) => product.id == productItem.id)
 
         if (!item) {
-            // axios.get(`http://localhost:8080/produto/${id}`)
-            //     .then((resp) => {
-            //         const result = resp.data as ProductDataBackend
-            //         copyProductsCart.push({
-            //             id,
-            //             nome: result.nome,
-            //             imagem: result.imagem,
-            //             valor_unitario: result.valor_unitario,
-            //             quantidade: 1
-            //         })
-            //         setProductsCart(copyProductsCart)
-            //     }).catch((error) => console.log(error))
+                copyProductsCart.push({
+                    ...productItem
+                })
         }else {
-            item.quantidade = item.quantidade + 1
+            item.quantidade = item.quantidade + productItem.quantidade
         }
 
         setProductsCart(copyProductsCart)
@@ -108,7 +99,7 @@ export function CartProvider({ children }: CartProviderProps) {
     return (
         <CartContext.Provider
             value={{
-                productsCart: productsCart,
+                productsCart,
                 addProductToCart,
                 getProductFromCart,
                 removeProductFromCart,
