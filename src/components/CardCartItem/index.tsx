@@ -28,7 +28,7 @@ export function CardCartItem({ id, nome, valor_unitario, imagem, quantidade }: C
                     </Text>
                 </Column>
             </Row>
-            <ContainerQuantity>
+            <ContainerQuantity style={{ elevation: 2 }}>
                 <BoxMinus
                     onPress={() => removeProductFromCart(id) } 
                     activeOpacity={0.6}

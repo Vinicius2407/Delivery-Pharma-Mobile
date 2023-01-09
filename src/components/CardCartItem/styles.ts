@@ -19,7 +19,7 @@ export const ContainerQuantity = styled.View`
   justify-content: space-between;
 
   background: ${styles.colors.contrast};
-  border: 1px solid ${styles.colors.border};
+  /* border: 1px solid ${styles.colors.border}; */
   border-radius: 10px;
 `;
 

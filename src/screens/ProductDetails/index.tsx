@@ -2,15 +2,14 @@ import { useCallback, useRef, useState } from "react";
 import { Alert, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { useCart } from "../../contexts/CartContext";
-import { TrashSimple, Plus as IconPlus, Minus as IconMinus, CameraSlash, ShoppingCartSimple } from "phosphor-react-native"
+import { TrashSimple, Plus as IconPlus, Minus as IconMinus, CameraSlash, ShoppingCartSimple, CircleWavyWarning, User } from "phosphor-react-native"
 
 import { Wrapper } from "../../components/Wrapper";
 import { GoBackButton } from "../../components/GoBackButton";
-import { Row, Description, Image, ImageContainer, Title, Box, Minus, Plus, ProductAmount, ProductPrice, Price, ButtonAddProductToCart, ProductInCart } from "./styles";
+import { Row, Description, Image, ImageContainer, Title, Box, Minus, Plus, ProductAmount, ProductPrice, Price, ButtonAddProductToCart, ProductInCart, RecipeContainer, UseContainer } from "./styles";
 import { Highlight, styles } from "../../globals/styles.global";
 import { formatCurrency } from "../../utils/format.util";
 import { CartProductItem, ProductDataBackend } from "../../utils/interfaces.backend";
-import { SimpleButton } from "../../components/SimpleButton";
 
 interface RouteParamsData {
     product: ProductDataBackend
@@ -55,10 +54,21 @@ export function ProductDetails() {
         } as CartProductItem
 
         addProductToCart(item)
+
+        setProductCount(0)
+
+        Alert.alert('', 'Produto adicionado ao carrinho')
     }
 
     function showQuantityOfProductInCart() {
         Alert.alert('Carrinho', `Você já possui ${productCountInCart} unidade(s) deste produto em seu carrinho`)
+    }
+
+    const handleRecipeWarnings = () => {
+        Alert.alert(
+            'Receita', 
+            'Para adquirir este produto, será necessário anexar receita do mesmo, basta anexa-la durante a finalização do pedido.'
+        )
     }
 
     return (
@@ -88,6 +98,14 @@ export function ProductDetails() {
         <Title numberOfLines={2} ellipsizeMode="tail">
             {product.categoria.descricao}
         </Title>
+        <Row style={{ justifyContent: 'flex-end' }}>
+            <UseContainer>
+                <User size={20} color={styles.colors.heading} />
+                <Highlight style={{ marginLeft: 6 }}>
+                    { product.uso }
+                </Highlight>
+            </UseContainer>
+        </Row>
         <ScrollView 
             showsVerticalScrollIndicator={false} 
             style={{ flex: 1, marginVertical: 20 }}
@@ -105,7 +123,18 @@ export function ProductDetails() {
             <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis rerum nesciunt consectetur perspiciatis nemo vero rem blanditiis mollitia aperiam minima excepturi, possimus culpa voluptate commodi autem numquam explicabo totam iste.</Description>
         </ScrollView>
 
-        <Row style={{ justifyContent: 'flex-end'}}>
+        <Row style={{ justifyContent: product.precisa_receita ? 'space-between' : 'flex-end' }}>
+            {product.precisa_receita && (
+                <RecipeContainer
+                    activeOpacity={0.8}
+                    onPress={handleRecipeWarnings}
+                >
+                    <CircleWavyWarning size={20} color="#FFF" weight="fill" />
+                    <Highlight style={{ marginLeft: 6, color: "#FFF" }}>
+                        Receita obrigatória
+                    </Highlight>
+                </RecipeContainer>
+            )}
             <ProductPrice>
                 <Price>{ formatCurrency(product.valor_unitario) }</Price>
             </ProductPrice>

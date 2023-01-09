@@ -1,5 +1,5 @@
-import { useMemo, useRef } from 'react'
-import { ScrollView, TouchableOpacity } from "react-native";
+import { useCallback, useMemo, useRef } from 'react'
+import { ScrollView, TouchableOpacity,View } from "react-native";
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { X } from 'phosphor-react-native';
 import { CartButton } from "../../components/CartButton";
@@ -9,9 +9,9 @@ import { VerticalCategories } from "../../components/VerticalCategories";
 import { Wrapper } from "../../components/Wrapper";
 import { Highlight, styles } from "../../globals/styles.global";
 import { Subtitle } from "./styles";
-import { IconContainer } from '../../components/Input/styles';
 import { CartItems } from '../../components/CartItems';
 import { useCart } from '../../contexts/CartContext';
+import { ProductsList } from '../../components/ProductsList';
 
 export function Products() {
     const { productsCart } = useCart()
@@ -19,8 +19,13 @@ export function Products() {
     
     const snapPoints = useMemo(() => [1, '75%'], []);
 
-    const bottomSheetExpand = () => bottomSheetRef.current?.expand();
-    const bottomSheetClose = () => bottomSheetRef.current?.close()
+    const handleBottomSheetExpand = useCallback(() => {
+        bottomSheetRef.current?.expand()
+    }, [])
+
+    const handleBottomSheetClose = useCallback(() => {
+        bottomSheetRef.current?.close()
+    }, [])
 
     return (
         <Wrapper>
@@ -32,18 +37,21 @@ export function Products() {
 
             {/* <HorizontalCategories showOnlyFavorites /> */}
 
-            <Subtitle>
+            {/* <Subtitle>
                 <Highlight>Categorias</Highlight>
-            </Subtitle>
+            </Subtitle> */}
 
-            <ScrollView>
+            {/* <ScrollView>
                 <VerticalCategories />
-            </ScrollView>
+            </ScrollView> */}
+            <View style={{ flex: 1, marginBottom: 16 }}>
+                {/* <ProductsList /> */}
+            </View>
 
             { productsCart && productsCart.length > 0 && (
                 <CartButton
                     quantidade={productsCart.length}
-                    onPress={bottomSheetExpand}
+                    onPress={handleBottomSheetExpand}
                 />
             )}
 
@@ -70,7 +78,7 @@ export function Products() {
                     paddingHorizontal: 16
                 }}
             >
-                <TouchableOpacity onPress={bottomSheetClose}>
+                <TouchableOpacity onPress={handleBottomSheetClose}>
                     <X size={25} color={styles.colors.heading}/>
                 </TouchableOpacity>
                 <CartItems />

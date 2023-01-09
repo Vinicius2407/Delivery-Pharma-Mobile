@@ -16,13 +16,7 @@ interface CartContextData {
     getTotalParcial:() => number;
 }
 
-const initialProducts = [{ 
-        id: 1, 
-        nome: 'Neosoro', 
-        valor_unitario: 5, 
-        imagem: 'https://uploads.consultaremedios.com.br/product_images/full/38250f5ffcc40294856cccd8e11bb40b5b5514b1.png?1668441530', 
-        quantidade: 1 
-    },
+/*const initialProducts = [
     {
         id: 2, 
         nome: 'Aspirina', 
@@ -30,12 +24,12 @@ const initialProducts = [{
         imagem: 'https://uploads.consultaremedios.com.br/product_variation_images/full/48d430b6e54b51876833bd2e608a3ce0bcd83597.jpg?1646247692', 
         quantidade: 2
     }
-]
+]*/
 
 const CartContext = createContext({} as CartContextData)
 
 export function CartProvider({ children }: CartProviderProps) {
-    const [productsCart, setProductsCart] = useState<CartProductItem[]>(initialProducts);
+    const [productsCart, setProductsCart] = useState<CartProductItem[]>([]);
 
     // const getProductIfNotExit = async(id:number) => {
     //     const { data } = await axios.get<ProductDataBackend>(`http://localhost:8080/produto/${id}`)

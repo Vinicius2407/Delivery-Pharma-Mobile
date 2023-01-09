@@ -26,10 +26,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AuthenticationProvider>
-        <StatusBar style="dark" backgroundColor={styles.colors.background} translucent={false} />
-        <Routes />
-      </AuthenticationProvider>
+        <AuthenticationProvider>
+            <StatusBar style="dark" backgroundColor={styles.colors.background} translucent={false} />
+            <Routes />
+        </AuthenticationProvider>
     </NavigationContainer>
   );
 }

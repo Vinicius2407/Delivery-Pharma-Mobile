@@ -41,6 +41,16 @@ export const Title = styled.Text`
   max-height: 40px;
 `;
 
+export const UseContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  background: ${styles.colors.contrast};
+  border: 1px solid ${styles.colors.border};
+  border-radius: 10px;
+`;
+
 export const Description = styled.Text`
   font-family: ${styles.fonts.regular};
   font-size: ${styles.sizes.body};
@@ -63,6 +73,18 @@ export const Box = styled.View`
   justify-content: space-between;
   background: ${styles.colors.contrast};
   border: 1px solid ${styles.colors.border};
+  border-radius: 10px;
+`;
+
+export const RecipeContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  /* background: rgba(255, 193, 7, 0.2); */
+  background: ${styles.colors.red};
+  
+  /* border: 1px solid #ffc107; */
   border-radius: 10px;
 `;
 
