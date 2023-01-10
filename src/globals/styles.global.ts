@@ -10,6 +10,7 @@ export const styles = {
     green: "#399153",
     red: "#db4040",
     blue: "#1a69bd",
+    orange: "#A58132",
 
     opaques: {
       green: "#39915310",

@@ -4,7 +4,7 @@ import { Title } from "./styles";
 export function Orders() {
   return (
     <Wrapper>
-      <Title>Orders Screen</Title>
+      <Title>Meus pedidos</Title>
     </Wrapper>
   );
 }
