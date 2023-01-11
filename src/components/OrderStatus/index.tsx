@@ -30,10 +30,10 @@ export function OrderStatus({ status }: OrderStatusProps) {
     
     return (
         <Row>
-            <Highlight style={{ color: statusProps.color }}>
+            <CustomIcon color={statusProps.color} size={20} />
+            <Highlight style={{ color: statusProps.color, marginLeft: 6 }}>
                 { statusProps.title }
             </Highlight>
-            <CustomIcon color={statusProps.color} size={25} />
         </Row>
     )
 }

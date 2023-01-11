@@ -16,9 +16,14 @@ export const Title = styled.Text`
 `;
 
 export const Price = styled.Text`
-  font-family: ${styles.fonts.bold};
+  font-family: ${styles.fonts.medium};
   font-size: ${styles.sizes.body};
-  color: ${styles.colors.blue};
+  color: ${styles.colors.red};
+`;
 
-  align-self: flex-end;
+export const BoxQuantity = styled.View`
+  background: #f1f3f5;
+  padding: 2px 4px;
+  border-radius: 6px;
+  border: 1px solid ${styles.colors.border};
 `;

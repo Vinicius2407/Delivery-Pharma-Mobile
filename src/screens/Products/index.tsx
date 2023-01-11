@@ -17,7 +17,7 @@ export function Products() {
     const { productsCart } = useCart()
     const bottomSheetRef = useRef<BottomSheet>(null)
     
-    const snapPoints = useMemo(() => [1, '75%'], []);
+    const snapPoints = useMemo(() => [1, '100%'], []);
 
     const handleBottomSheetExpand = useCallback(() => {
         bottomSheetRef.current?.expand()
@@ -60,22 +60,25 @@ export function Products() {
                 index={-1}
                 snapPoints={snapPoints}
                 handleIndicatorStyle={{
-                    backgroundColor: styles.colors.border,
+                    backgroundColor: 'transparent',
                     width: '15%'
                 }}
+                
                 enablePanDownToClose
                 handleStyle={{
-                    borderTopLeftRadius: 10,
-                    borderTopRightRadius: 10,
+                    borderTopLeftRadius: 0,
+                    borderTopRightRadius: 0,
                 }}
                 backgroundStyle={{
-                    backgroundColor: styles.colors.background,
+                    backgroundColor: styles.colors.contrast,
+                    borderRadius: 0
+                    
                 }}
                 backdropComponent={(backdropProps) => (
                     <BottomSheetBackdrop {...backdropProps} enableTouchThrough={true} />
                 )}
                 style={{
-                    paddingHorizontal: 16
+                    paddingHorizontal: 16,
                 }}
             >
                 <TouchableOpacity onPress={handleBottomSheetClose}>

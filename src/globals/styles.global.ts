@@ -2,7 +2,8 @@ import styled from "styled-components/native";
 
 export const styles = {
   colors: {
-    background: "#f1f3f5",
+    // background: "#f1f3f5",
+    background: "#fff",
     contrast: "#ffffff",
     heading: "#2f2f2f",
     body: "#555555",
